@@ -40,7 +40,7 @@ namespace DeploymentApp
             XmlElement dependenciesNode = interfaces.CreateElement("dependencies");
             applicationNode.AppendChild(dependenciesNode);
 
-            //Create a new dependency node            
+            //Create a new dependency node
             string[] dependencies = appClass.DependenciesText.Split(new char[] { ',' });
 
             foreach (string dependency in dependencies)

@@ -50,6 +50,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
@@ -60,7 +61,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 159);
+            this.label5.Location = new System.Drawing.Point(20, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 16;
@@ -104,7 +105,7 @@
             // 
             // stagingPathTextBox
             // 
-            this.stagingPathTextBox.Location = new System.Drawing.Point(123, 158);
+            this.stagingPathTextBox.Location = new System.Drawing.Point(123, 183);
             this.stagingPathTextBox.Name = "stagingPathTextBox";
             this.stagingPathTextBox.Size = new System.Drawing.Size(200, 20);
             this.stagingPathTextBox.TabIndex = 7;
@@ -122,7 +123,7 @@
             this.dependenciesTextBox.Multiline = true;
             this.dependenciesTextBox.Name = "dependenciesTextBox";
             this.dependenciesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dependenciesTextBox.Size = new System.Drawing.Size(200, 50);
+            this.dependenciesTextBox.Size = new System.Drawing.Size(200, 75);
             this.dependenciesTextBox.TabIndex = 5;
             // 
             // executableFileTextbox
@@ -201,7 +202,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(355, 156);
+            this.button4.Location = new System.Drawing.Point(355, 181);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -219,11 +220,23 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(352, 126);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(35, 13);
+            this.linkLabel1.TabIndex = 17;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Reset";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 266);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dependencyButton);
@@ -278,5 +291,6 @@
         public System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

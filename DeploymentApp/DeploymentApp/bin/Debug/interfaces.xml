@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<applications>
+  <application name="test">
+    <executable>asdf</executable>
+    <dependencies>
+      <dependency>test.exe</dependency>
+      <dependency>IncorrectUsername.png</dependency>
+      <dependency>KeyTimeOut.png</dependency>
+      <dependency>PasswordLength.png</dependency>
+      <dependency>PasswordNotMatch.png</dependency>
+    </dependencies>
+    <build_path>asdf</build_path>
+    <staging_path>asdf</staging_path>
+  </application>
+</applications>

@@ -97,7 +97,7 @@
             this.dependenciesTextBox.Multiline = true;
             this.dependenciesTextBox.Name = "dependenciesTextBox";
             this.dependenciesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dependenciesTextBox.Size = new System.Drawing.Size(200, 50);
+            this.dependenciesTextBox.Size = new System.Drawing.Size(200, 75);
             this.dependenciesTextBox.TabIndex = 5;
             // 
             // buildPathTextBox
@@ -109,7 +109,7 @@
             // 
             // stagingPathTextBox
             // 
-            this.stagingPathTextBox.Location = new System.Drawing.Point(123, 158);
+            this.stagingPathTextBox.Location = new System.Drawing.Point(123, 183);
             this.stagingPathTextBox.Name = "stagingPathTextBox";
             this.stagingPathTextBox.Size = new System.Drawing.Size(200, 20);
             this.stagingPathTextBox.TabIndex = 7;
@@ -153,7 +153,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 159);
+            this.label5.Location = new System.Drawing.Point(20, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 11;
@@ -211,7 +211,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(355, 156);
+            this.button4.Location = new System.Drawing.Point(355, 181);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
