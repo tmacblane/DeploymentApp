@@ -86,30 +86,30 @@
             // 
             // executableFileTextbox
             // 
-            this.executableFileTextbox.Location = new System.Drawing.Point(123, 51);
+            this.executableFileTextbox.Location = new System.Drawing.Point(123, 76);
             this.executableFileTextbox.Name = "executableFileTextbox";
             this.executableFileTextbox.Size = new System.Drawing.Size(200, 20);
-            this.executableFileTextbox.TabIndex = 1;
+            this.executableFileTextbox.TabIndex = 3;
             // 
             // dependenciesTextBox
             // 
-            this.dependenciesTextBox.Location = new System.Drawing.Point(123, 78);
+            this.dependenciesTextBox.Location = new System.Drawing.Point(123, 102);
             this.dependenciesTextBox.Multiline = true;
             this.dependenciesTextBox.Name = "dependenciesTextBox";
             this.dependenciesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dependenciesTextBox.Size = new System.Drawing.Size(200, 50);
-            this.dependenciesTextBox.TabIndex = 3;
+            this.dependenciesTextBox.TabIndex = 5;
             // 
             // buildPathTextBox
             // 
-            this.buildPathTextBox.Location = new System.Drawing.Point(123, 134);
+            this.buildPathTextBox.Location = new System.Drawing.Point(123, 50);
             this.buildPathTextBox.Name = "buildPathTextBox";
             this.buildPathTextBox.Size = new System.Drawing.Size(200, 20);
-            this.buildPathTextBox.TabIndex = 5;
+            this.buildPathTextBox.TabIndex = 1;
             // 
             // stagingPathTextBox
             // 
-            this.stagingPathTextBox.Location = new System.Drawing.Point(123, 161);
+            this.stagingPathTextBox.Location = new System.Drawing.Point(123, 158);
             this.stagingPathTextBox.Name = "stagingPathTextBox";
             this.stagingPathTextBox.Size = new System.Drawing.Size(200, 20);
             this.stagingPathTextBox.TabIndex = 7;
@@ -126,7 +126,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 52);
+            this.label2.Location = new System.Drawing.Point(20, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 8;
@@ -135,7 +135,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 79);
+            this.label3.Location = new System.Drawing.Point(20, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 9;
@@ -144,7 +144,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 135);
+            this.label4.Location = new System.Drawing.Point(20, 51);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 10;
@@ -153,7 +153,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 162);
+            this.label5.Location = new System.Drawing.Point(20, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 11;
@@ -161,20 +161,20 @@
             // 
             // executableButton
             // 
-            this.executableButton.Location = new System.Drawing.Point(355, 49);
+            this.executableButton.Location = new System.Drawing.Point(355, 74);
             this.executableButton.Name = "executableButton";
             this.executableButton.Size = new System.Drawing.Size(75, 23);
-            this.executableButton.TabIndex = 2;
+            this.executableButton.TabIndex = 4;
             this.executableButton.Text = "Browse";
             this.executableButton.UseVisualStyleBackColor = true;
             this.executableButton.Click += new System.EventHandler(this.executableButton_Click);
             // 
             // dependencyButton
             // 
-            this.dependencyButton.Location = new System.Drawing.Point(355, 76);
+            this.dependencyButton.Location = new System.Drawing.Point(355, 100);
             this.dependencyButton.Name = "dependencyButton";
             this.dependencyButton.Size = new System.Drawing.Size(75, 23);
-            this.dependencyButton.TabIndex = 4;
+            this.dependencyButton.TabIndex = 6;
             this.dependencyButton.Text = "Browse";
             this.dependencyButton.UseVisualStyleBackColor = true;
             this.dependencyButton.Click += new System.EventHandler(this.dependencyButton_Click);
@@ -201,17 +201,17 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(355, 132);
+            this.button3.Location = new System.Drawing.Point(355, 48);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
+            this.button3.TabIndex = 2;
             this.button3.Text = "Browse";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(355, 159);
+            this.button4.Location = new System.Drawing.Point(355, 156);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -240,6 +240,8 @@
             this.Controls.Add(this.applicationNameTextbox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(450, 300);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add New Application";

@@ -13,7 +13,6 @@ namespace DeploymentApp
 {
     public partial class Form2 : Form
     {
-        XmlDocument interfaces = new XmlDocument();
         OpenFileDialog ofdg = new OpenFileDialog();
         FolderBrowserDialog fbd = new FolderBrowserDialog();
 
@@ -139,6 +138,7 @@ namespace DeploymentApp
             {
                 executableFileTextbox.Text = ofdg.SafeFileName;
             }
+            ofdg.Reset();
         }
 
         private void dependencyButton_Click(object sender, EventArgs e)
@@ -161,6 +161,7 @@ namespace DeploymentApp
                     dependenciesTextBox.Text = dependenciesTextBox.Text + dependency + ",";
                 }
             }
+            ofdg.Reset();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -179,7 +180,7 @@ namespace DeploymentApp
         {
             fbd.Description = "Select the StagingPath directory";
             fbd.RootFolder = Environment.SpecialFolder.MyComputer;
-            fbd.ShowNewFolderButton = false;
+            fbd.ShowNewFolderButton = true;
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {

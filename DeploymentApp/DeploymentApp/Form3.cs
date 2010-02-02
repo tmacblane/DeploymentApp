@@ -14,6 +14,8 @@ namespace DeploymentApp
 {
     public partial class Form3 : Form
     {
+        string executablePath = Application.StartupPath;
+
         XmlDocument interfaces = new XmlDocument();
         OpenFileDialog ofdg = new OpenFileDialog();
         FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -28,7 +30,7 @@ namespace DeploymentApp
 
         public void loadApplication(application appClass)
         {
-            interfaces.Load(Settings.Default.XMLFile);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
 
             XmlNode node = null;
             XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
@@ -216,7 +218,7 @@ namespace DeploymentApp
         {
             fbd.Description = "Select the StagingPath directory";
             fbd.RootFolder = Environment.SpecialFolder.MyComputer;
-            fbd.ShowNewFolderButton = false;
+            fbd.ShowNewFolderButton = true;
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {

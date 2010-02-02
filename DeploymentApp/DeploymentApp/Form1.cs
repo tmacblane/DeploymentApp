@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeploymentApp.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,8 @@ namespace DeploymentApp
 {
     public partial class Form1 : Form
     {
+        string executablePath = Application.StartupPath;
         XmlDocument interfaces = new XmlDocument();
-
-        public string xmlFilePath = "Interfaces.xml";
 
         public Form1()
         {
@@ -26,17 +26,17 @@ namespace DeploymentApp
         {
             try
             {
-                interfaces.Load(xmlFilePath);
+                interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             }
 
             catch(System.IO.FileNotFoundException)
             {
-                XmlTextWriter xmlWriter = new XmlTextWriter(xmlFilePath, System.Text.Encoding.UTF8);
+                XmlTextWriter xmlWriter = new XmlTextWriter(Settings.Default.XMLFile, System.Text.Encoding.UTF8);
                 xmlWriter.Formatting = Formatting.Indented;
                 xmlWriter.WriteProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
                 xmlWriter.WriteStartElement("applications");
                 xmlWriter.Close();
-                interfaces.Load(xmlFilePath);
+                interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             }
 
             loadComboBox();
@@ -46,7 +46,7 @@ namespace DeploymentApp
 
         private void loadComboBox()
         {
-            interfaces.Load(xmlFilePath);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
             foreach (XmlNode application in applicationList)
             {
@@ -108,7 +108,7 @@ namespace DeploymentApp
 
         private void fileMove()
         {
-            interfaces.Load(xmlFilePath);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
 
             //Pulls the list of applications in the xml
             XmlNode node = null;
@@ -156,7 +156,7 @@ namespace DeploymentApp
         
         private void createReadMe()
         {
-            interfaces.Load(xmlFilePath);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
 
             //Pulls the list of applications in the xml
             XmlNode node = null;

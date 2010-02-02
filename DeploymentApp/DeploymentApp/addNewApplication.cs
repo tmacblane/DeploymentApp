@@ -14,11 +14,12 @@ namespace DeploymentApp
 {
     public class addNewApplication
     {
+        string executablePath = Application.StartupPath;
 
         public void createNewApplication(application appClass)
         {
             XmlDocument interfaces = new XmlDocument();
-            interfaces.Load(Settings.Default.XMLFile);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
 
             //Create a new application node
             XmlElement applicationNode = interfaces.CreateElement("application");
@@ -67,7 +68,7 @@ namespace DeploymentApp
             //Insert new elements after last child
             interfaces.DocumentElement.InsertAfter(applicationNode, interfaces.DocumentElement.LastChild);
 
-            interfaces.Save(Settings.Default.XMLFile);
+            interfaces.Save(executablePath + "\\" + Settings.Default.XMLFile);
             interfaces = null;
         }
     }
