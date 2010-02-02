@@ -152,6 +152,8 @@ namespace DeploymentApp
 
                 File.Move(sourcePath, destPath);
             }
+
+            applicationComboBox.ResetText();
         }
         
         private void createReadMe()
@@ -168,13 +170,13 @@ namespace DeploymentApp
             {
                 if (application.Attributes["name"].Value == selectedApplication)
                 {
-                    node = application;
+                    node = application;                    
                 }
             }      
 
-            XmlNode stagingPath = node.SelectSingleNode("staging_path");
-            string readMeFile = stagingPath + "ReadMe.txt";
-            string oldReadMeFile = stagingPath + "ReadMe_Old.txt";
+            XmlNode buildPath = node.SelectSingleNode("build_path");
+            string readMeFile = buildPath.InnerText + "\\ReadMe.txt";
+            string oldReadMeFile = buildPath.InnerText + "\\ReadMe_Old.txt";
 
             if (File.Exists(readMeFile))
             {
