@@ -22,6 +22,7 @@ namespace DeploymentApp
             InitializeComponent();
         }
 
+        #region Validate Textboxes
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -89,8 +90,9 @@ namespace DeploymentApp
             }
             else
             errorProvider5.Clear();
-            return stagingPath;         
+            return stagingPath;
         }
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -181,7 +183,7 @@ namespace DeploymentApp
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                buildPathTextBox.Text = fbd.SelectedPath;
+                stagingPathTextBox.Text = fbd.SelectedPath;
             }
         }
     }

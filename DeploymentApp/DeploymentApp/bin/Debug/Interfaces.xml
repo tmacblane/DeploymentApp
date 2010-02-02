@@ -3,9 +3,9 @@
   <application name="aaaa">
     <executable>asdf</executable>
     <dependencies>
-      <dependency>sdfasdfasdf</dependency>
+      <dependency>asdf</dependency>
     </dependencies>
-    <build_path>asdf</build_path>
-    <staging_path>asdf</staging_path>
+    <build_path>C:\Temp\StagingPath</build_path>
+    <staging_path>C:\Temp\BuildPath</staging_path>
   </application>
 </applications>

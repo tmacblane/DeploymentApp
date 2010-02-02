@@ -37,3 +37,9 @@ C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.
 C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.exe.manifest
 C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.application
 C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.exe.config
+C:\CblPath\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.exe.config
+C:\CblPath\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.exe
+C:\CblPath\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.pdb
+C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.exe.config
+C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.exe
+C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.pdb

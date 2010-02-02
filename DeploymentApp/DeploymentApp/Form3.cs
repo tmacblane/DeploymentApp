@@ -220,7 +220,7 @@ namespace DeploymentApp
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                buildPathTextBox.Text = fbd.SelectedPath;
+                stagingPathTextBox.Text = fbd.SelectedPath;
             }
         }
     }
