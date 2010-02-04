@@ -80,6 +80,33 @@ namespace DeploymentApp
             return applicationName;
         }
 
+        private bool validateDuplicateApplicationName()
+        {
+            XmlDocument interfaces = new XmlDocument();
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
+            XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
+            string duplicateApp = null;
+
+            foreach (XmlNode application in applicationList)
+            {
+                if (application.Attributes["name"].Value == applicationNameTextbox.Text)
+                {
+                    duplicateApp = applicationNameTextbox.Text;
+                }
+            }
+
+            bool applicationNameDuplicate = true;
+            if (duplicateApp != null)
+            {
+                errorProvider6.SetError(applicationNameTextbox, "An application with that name already exists");
+                applicationNameDuplicate = false;
+            }
+
+            else
+                errorProvider6.Clear();
+            return applicationNameDuplicate;
+        }
+
         private bool validateExecutableFileTextbox()
         {
             bool executableFile = true;
@@ -136,12 +163,13 @@ namespace DeploymentApp
         private void button1_Click(object sender, EventArgs e)
         {
             bool validApplicationName = validateApplicationNameTextbox();
+            bool validDuplicateApplicationName = validateDuplicateApplicationName();
             bool validExecutableFile = validateExecutableFileTextbox();
             bool validDependencyFile = validateDependenciesTextbox();
             bool validBuildPath = validateBuildPathTextbox();
             bool validStagingPath = validateStagingPathTextbox();
 
-            if (validApplicationName && validExecutableFile && validDependencyFile && validBuildPath && validStagingPath)
+            if (validApplicationName && validDuplicateApplicationName && validExecutableFile && validDependencyFile && validBuildPath && validStagingPath)
             {                
                 appClass.ApplicationNameText = applicationNameTextbox.Text;
                 appClass.ExecutableNameText = executableFileTextbox.Text;
@@ -205,8 +233,16 @@ namespace DeploymentApp
         private void button3_Click(object sender, EventArgs e)
         {
             fbd.Description = "Select the BuildPath directory";
-            fbd.RootFolder = Environment.SpecialFolder.MyComputer;
             fbd.ShowNewFolderButton = false;
+
+            if (buildPathTextBox.Text == null)
+            {
+                fbd.RootFolder = Environment.SpecialFolder.Desktop;
+            }
+            else
+            {
+                fbd.SelectedPath = buildPathTextBox.Text;
+            }
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
@@ -217,8 +253,16 @@ namespace DeploymentApp
         private void button4_Click(object sender, EventArgs e)
         {
             fbd.Description = "Select the StagingPath directory";
-            fbd.RootFolder = Environment.SpecialFolder.MyComputer;
             fbd.ShowNewFolderButton = true;
+
+            if (stagingPathTextBox.Text == null)
+            {
+                fbd.RootFolder = Environment.SpecialFolder.Desktop;
+            }
+            else
+            {
+                fbd.SelectedPath = stagingPathTextBox.Text;
+            }
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
@@ -229,6 +273,19 @@ namespace DeploymentApp
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             dependenciesTextBox.Clear();
+        }
+
+        private void deleteAppButton_Click(object sender, EventArgs e)
+        {
+            appClass.ComboBoxValue = comboBoxValue;
+
+            if (MessageBox.Show("Are you sure you want to delete this application?", "Delete Application", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                deleteApplication deleteApp = new deleteApplication();
+                deleteApp.deleteExistingApplication(appClass);
+
+                Close();
+            }
         }
     }
 }

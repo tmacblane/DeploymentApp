@@ -94,9 +94,10 @@ namespace DeploymentApp
                     fileMove();
                 }
 
-                catch
+                catch(Exception stuff)
                 {
-                    MessageBox.Show("The selected application files could not be found");
+                    MessageBox.Show(stuff.ToString());
+                    //MessageBox.Show("The selected application files could not be found");
                 }
             }
         }
@@ -139,7 +140,7 @@ namespace DeploymentApp
             string sourceFile = Path.Combine(source, file.Name);
             string destFile = Path.Combine(destination, file.Name);
 
-            File.Move(sourceFile, destFile);
+            File.Copy(sourceFile, destFile, true);
 
             //Gets the dependency files and moves them
             XmlNodeList dependencyNodes = node.SelectNodes("dependencies/dependency");
@@ -149,8 +150,9 @@ namespace DeploymentApp
                 var fileName = dependencyNode.InnerText;
                 string sourcePath = Path.Combine(source, fileName);
                 string destPath = Path.Combine(destination, fileName);
+                
+                File.Copy(sourcePath, destPath, true);
 
-                File.Move(sourcePath, destPath);
             }
 
             applicationComboBox.ResetText();
@@ -250,7 +252,7 @@ namespace DeploymentApp
 
                 editApplicationForm.ShowDialog();
             }
-            catch
+            catch(Exception)
             {
                 MessageBox.Show("The selected application was not found");
             }  

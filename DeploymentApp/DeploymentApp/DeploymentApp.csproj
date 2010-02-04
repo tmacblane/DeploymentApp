@@ -70,6 +70,7 @@
     <Compile Include="addNewApplication.cs">
     </Compile>
     <Compile Include="application.cs" />
+    <Compile Include="deleteApplication.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

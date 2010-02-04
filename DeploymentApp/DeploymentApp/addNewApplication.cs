@@ -63,13 +63,11 @@ namespace DeploymentApp
             stagingPathNode.InnerText = appClass.StagingPathText;
             applicationNode.AppendChild(stagingPathNode);
 
-            //TODO - Check for duplicates
-
-            //Insert new elements after last child
             interfaces.DocumentElement.InsertAfter(applicationNode, interfaces.DocumentElement.LastChild);
 
             interfaces.Save(executablePath + "\\" + Settings.Default.XMLFile);
             interfaces = null;
-        }
+
+        }        
     }
 }

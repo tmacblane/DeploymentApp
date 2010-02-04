@@ -51,11 +51,14 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.deleteAppButton = new System.Windows.Forms.Button();
+            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -231,11 +234,26 @@
             this.linkLabel1.Text = "Reset";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // deleteAppButton
+            // 
+            this.deleteAppButton.Location = new System.Drawing.Point(23, 231);
+            this.deleteAppButton.Name = "deleteAppButton";
+            this.deleteAppButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteAppButton.TabIndex = 11;
+            this.deleteAppButton.Text = "Delete App";
+            this.deleteAppButton.UseVisualStyleBackColor = true;
+            this.deleteAppButton.Click += new System.EventHandler(this.deleteAppButton_Click);
+            // 
+            // errorProvider6
+            // 
+            this.errorProvider6.ContainerControl = this;
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 266);
+            this.Controls.Add(this.deleteAppButton);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -263,6 +281,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +311,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button deleteAppButton;
+        private System.Windows.Forms.ErrorProvider errorProvider6;
     }
 }
