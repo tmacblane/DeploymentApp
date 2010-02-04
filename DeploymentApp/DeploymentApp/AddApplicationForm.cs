@@ -42,7 +42,11 @@ namespace DeploymentApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("To Do");
+            applicationNameTextbox.ResetText();
+            executableFileTextbox.ResetText();
+            dependenciesTextBox.ResetText();
+            buildPathTextBox.ResetText();
+            stagingPathTextBox.ResetText();
         }
     }
 }
