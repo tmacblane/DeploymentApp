@@ -220,7 +220,7 @@ namespace DeploymentApp
 
         private void addNewLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form2 addNewApplicationForm = new Form2(this);
+            AddApplicationForm addNewApplicationForm = new AddApplicationForm(this);
 
             applicationComboBox.Items.Clear();
             addNewApplicationForm.FormClosed += (x, y) =>
@@ -233,7 +233,7 @@ namespace DeploymentApp
 
         private void editLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {    
-            Form3 editApplicationForm = new Form3(this);
+            UpdateApplicationForm editApplicationForm = new UpdateApplicationForm(this);
             applicationComboBox.Items.Clear();
             try
             {

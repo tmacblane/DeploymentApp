@@ -12,24 +12,19 @@ using System.Xml;
 
 namespace DeploymentApp
 {
-    public partial class Form2 : Form
+    public partial class AddUpdateBaseForm : Form
     {
         OpenFileDialog ofdg = new OpenFileDialog();
         FolderBrowserDialog fbd = new FolderBrowserDialog();
-        string executablePath = Application.StartupPath;
+        protected string executablePath = Application.StartupPath;
 
-        public Form2(Form1 form1)
+        public AddUpdateBaseForm()
         {
             InitializeComponent();
         }
-        
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
 
         #region Validate Textboxes
-        private bool validateApplicationNameTextbox()
+        protected bool validateApplicationNameTextbox()
         {
             bool applicationName = true;
             if (applicationNameTextbox.Text.Trim() == "")
@@ -38,11 +33,11 @@ namespace DeploymentApp
                 applicationName = false;
             }
             else
-            errorProvider1.Clear();
+                errorProvider1.Clear();
             return applicationName;
         }
 
-        private bool validateDuplicateApplicationName()
+        protected bool validateDuplicateApplicationName()
         {
             XmlDocument interfaces = new XmlDocument();
             interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
@@ -65,11 +60,11 @@ namespace DeploymentApp
             }
 
             else
-            errorProvider6.Clear();
+                errorProvider6.Clear();
             return applicationNameDuplicate;
         }
 
-        private bool validateExecutableFileTextbox()
+        protected bool validateExecutableFileTextbox()
         {
             bool executableFile = true;
             if (executableFileTextbox.Text.Trim() == "")
@@ -78,11 +73,11 @@ namespace DeploymentApp
                 executableFile = false;
             }
             else
-            errorProvider2.Clear();
+                errorProvider2.Clear();
             return executableFile;
         }
 
-        private bool validateDependenciesTextbox()
+        protected bool validateDependenciesTextbox()
         {
             bool dependencyFile = true;
             if (dependenciesTextBox.Text.Trim() == "")
@@ -91,11 +86,11 @@ namespace DeploymentApp
                 dependencyFile = false;
             }
             else
-            errorProvider3.Clear();
+                errorProvider3.Clear();
             return dependencyFile;
         }
 
-        private bool validateBuildPathTextbox()
+        protected bool validateBuildPathTextbox()
         {
             bool buildPath = true;
             if (buildPathTextBox.Text.Trim() == "")
@@ -104,55 +99,45 @@ namespace DeploymentApp
                 buildPath = false;
             }
             else
-            errorProvider4.Clear();
+                errorProvider4.Clear();
             return buildPath;
         }
 
-        private bool validateStagingPathTextbox()
+        protected bool validateStagingPathTextbox()
         {
             bool stagingPath = true;
             if (stagingPathTextBox.Text.Trim() == "")
             {
                 errorProvider5.SetError(stagingPathTextBox, "Enter a staging path");
-                stagingPath = false;                
+                stagingPath = false;
             }
             else
-            errorProvider5.Clear();
+                errorProvider5.Clear();
             return stagingPath;
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBuildPath_Click(object sender, EventArgs e)
         {
-            bool validApplicationName = validateApplicationNameTextbox();
-            bool validDuplicateApplicationName = validateDuplicateApplicationName();
-            bool validExecutableFile = validateExecutableFileTextbox();
-            bool validDependencyFile = validateDependenciesTextbox();
-            bool validBuildPath = validateBuildPathTextbox();
-            bool validStagingPath = validateStagingPathTextbox();            
+            fbd.Description = "Select the BuildPath directory";
+            fbd.ShowNewFolderButton = false;
 
-            if (validApplicationName && validDuplicateApplicationName && validExecutableFile && validDependencyFile && validBuildPath && validStagingPath)
+            if (buildPathTextBox.Text == null)
             {
-                application appClass = new application();
-                appClass.ApplicationNameText = applicationNameTextbox.Text;
-                appClass.ExecutableNameText = executableFileTextbox.Text;
-                appClass.DependenciesText = dependenciesTextBox.Text;
-                appClass.BuildPathText = buildPathTextBox.Text;
-                appClass.StagingPathText = stagingPathTextBox.Text;
+                fbd.RootFolder = Environment.SpecialFolder.Desktop;
+            }
+            else
+            {
+                fbd.SelectedPath = buildPathTextBox.Text;
+            }
 
-                addNewApplication addNew = new addNewApplication();
-                addNew.createNewApplication(appClass);
-
-                Close();
-            }            
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                buildPathTextBox.Text = fbd.SelectedPath;
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void executableButton_Click(object sender, EventArgs e)
+        private void btnExecutable_Click(object sender, EventArgs e)
         {
             ofdg.Title = "Add Executable File";
             ofdg.Filter = "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*";
@@ -167,13 +152,13 @@ namespace DeploymentApp
             if (ofdg.ShowDialog() == DialogResult.OK)
             {
                 //executableFileTextbox.Text = ofdg.SafeFileName;
-                executableFileTextbox.Text = ofdg.FileName.Remove(0, buildPathTextBox.Text.Length+1);
+                executableFileTextbox.Text = ofdg.FileName.Remove(0, buildPathTextBox.Text.Length + 1);
                 //executableFileTextbox.Text = executableFileTextbox.Text.Substring(0, buildPathTextBox.Text.Length);// Replace(buildPathTextBox.Text, '');
             }
             ofdg.Reset();
         }
 
-        private void dependencyButton_Click(object sender, EventArgs e)
+        private void btnDependency_Click(object sender, EventArgs e)
         {
             ofdg.Title = "Select Dependencies";
             ofdg.Filter = "All Files (*.*)|*.*";
@@ -190,33 +175,13 @@ namespace DeploymentApp
             {
                 foreach (string dependency in ofdg.FileNames)
                 {
-                    dependenciesTextBox.Text = dependenciesTextBox.Text + dependency.Remove(0, buildPathTextBox.Text.Length+1) + ",";
+                    dependenciesTextBox.Text = dependenciesTextBox.Text + dependency.Remove(0, buildPathTextBox.Text.Length + 1) + ",";
                 }
             }
             ofdg.Reset();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            fbd.Description = "Select the BuildPath directory";
-            fbd.ShowNewFolderButton = false;
-
-            if (buildPathTextBox.Text == null)
-            {
-                fbd.RootFolder = Environment.SpecialFolder.Desktop;
-            }
-            else
-            {
-                fbd.SelectedPath = buildPathTextBox.Text;
-            }            
-
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                buildPathTextBox.Text = fbd.SelectedPath;
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void btnStagingPath_Click(object sender, EventArgs e)
         {
             fbd.Description = "Select the StagingPath directory";
             fbd.ShowNewFolderButton = true;
@@ -228,12 +193,17 @@ namespace DeploymentApp
             else
             {
                 fbd.SelectedPath = stagingPathTextBox.Text;
-            }      
+            }
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 stagingPathTextBox.Text = fbd.SelectedPath;
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

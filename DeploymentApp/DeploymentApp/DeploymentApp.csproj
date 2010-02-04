@@ -67,7 +67,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddApplicationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddApplicationForm.Designer.cs">
+      <DependentUpon>AddApplicationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="addNewApplication.cs">
+    </Compile>
+    <Compile Include="AddUpdateBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUpdateBaseForm.Designer.cs">
+      <DependentUpon>AddUpdateBaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="application.cs" />
     <Compile Include="deleteApplication.cs" />
@@ -91,6 +103,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddApplicationForm.resx">
+      <DependentUpon>AddApplicationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddUpdateBaseForm.resx">
+      <DependentUpon>AddUpdateBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -107,6 +125,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateApplicationForm.resx">
+      <DependentUpon>UpdateApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +146,12 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="updateApplication.cs" />
+    <Compile Include="UpdateApplicationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateApplicationForm.Designer.cs">
+      <DependentUpon>UpdateApplicationForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
