@@ -20,25 +20,33 @@ namespace DeploymentApp
 
         public void sendEmailNotification(application appClass)
         {
-            XmlDocument interfaces = new XmlDocument();
-            interfaces.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
-            XmlNodeList applicationList = interfaces.SelectNodes("settings/email");
+            XmlDocument emailConfig = new XmlDocument();
+            emailConfig.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+            
+            XmlNode emailList = emailConfig.SelectSingleNode("settings/email");
 
             //Locate elements from the XML
-            XmlNode hostInformation = interfaces.SelectSingleNode("host");
-            XmlNode portInformation = interfaces.SelectSingleNode("port");
-            XmlNode usernameInformation = interfaces.SelectSingleNode("username");
-            XmlNode passwordInformation = interfaces.SelectSingleNode("password");
-            XmlNode senderInformation = interfaces.SelectSingleNode("sender");
-            XmlNode recipientInformation = interfaces.SelectSingleNode("recipient");
+            XmlNode hostInformation = emailList.SelectSingleNode("host");
+            XmlNode portInformation = emailList.SelectSingleNode("port");
+            XmlNode usernameInformation = emailList.SelectSingleNode("username");
+            XmlNode passwordInformation = emailList.SelectSingleNode("password");
+            XmlNode senderInformation = emailList.SelectSingleNode("sender");
+            XmlNode recipientInformation = emailList.SelectSingleNode("recipient");
+
+            string host = hostInformation.InnerText;
+            int port = Convert.ToInt32(portInformation.InnerText);
+            string username = usernameInformation.InnerText;
+            string password = passwordInformation.InnerText;
+            string sender = senderInformation.InnerText;
+            string recipient = recipientInformation.InnerText;
 
             SmtpClient client = new SmtpClient();
-            client.Host = hostInformation.InnerText;
-            client.Port = Convert.ToInt32(portInformation.InnerText);
+            client.Host = host;
+            client.Port = port;
             client.EnableSsl = false;
-            client.Credentials = new NetworkCredential(usernameInformation.InnerText, passwordInformation.InnerText);
+            client.Credentials = new NetworkCredential(username, password);
 
-            client.Send(senderInformation.InnerText, recipientInformation.InnerText, appClass.ComboBoxValue + " Release", appClass.ReleaseNotesText);
+            client.Send(sender, recipient, appClass.ComboBoxValue + " Release", appClass.ReleaseNotesText);
         }
     }
 }
