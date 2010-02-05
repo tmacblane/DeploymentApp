@@ -37,33 +37,6 @@ namespace DeploymentApp
             return applicationName;
         }
 
-        protected bool validateDuplicateApplicationName()
-        {
-            XmlDocument interfaces = new XmlDocument();
-            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
-            XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
-            string duplicateApp = null;
-
-            foreach (XmlNode application in applicationList)
-            {
-                if (application.Attributes["name"].Value == applicationNameTextbox.Text)
-                {
-                    duplicateApp = applicationNameTextbox.Text;
-                }
-            }
-
-            bool applicationNameDuplicate = true;
-            if (duplicateApp != null)
-            {
-                errorProvider6.SetError(applicationNameTextbox, "An application with that name already exists");
-                applicationNameDuplicate = false;
-            }
-
-            else
-                errorProvider6.Clear();
-            return applicationNameDuplicate;
-        }
-
         protected bool validateExecutableFileTextbox()
         {
             bool executableFile = true;
@@ -175,7 +148,7 @@ namespace DeploymentApp
             {
                 foreach (string dependency in ofdg.FileNames)
                 {
-                    dependenciesTextBox.Text = dependenciesTextBox.Text + dependency.Remove(0, buildPathTextBox.Text.Length + 1) + ",";
+                    dependenciesTextBox.Text = dependenciesTextBox.Text + dependency.Remove(0, buildPathTextBox.Text.Length + 1) + Environment.NewLine;
                 }
             }
             ofdg.Reset();

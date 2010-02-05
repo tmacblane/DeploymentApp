@@ -1,10 +1,14 @@
-﻿using System;
+﻿using DeploymentApp.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DeploymentApp
 {
@@ -13,6 +17,33 @@ namespace DeploymentApp
         public AddApplicationForm(Form1 form1)
         {
             InitializeComponent();
+        }
+
+        protected bool validateDuplicateApplicationName()
+        {
+            XmlDocument interfaces = new XmlDocument();
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
+            XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
+            string duplicateApp = null;
+
+            foreach (XmlNode application in applicationList)
+            {
+                if (application.Attributes["name"].Value == applicationNameTextbox.Text)
+                {
+                    duplicateApp = applicationNameTextbox.Text;
+                }
+            }
+
+            bool applicationNameDuplicate = true;
+            if (duplicateApp != null)
+            {
+                errorProvider6.SetError(applicationNameTextbox, "An application with that name already exists");
+                applicationNameDuplicate = false;
+            }
+
+            else
+                errorProvider6.Clear();
+            return applicationNameDuplicate;
         }
 
         private void button1_Click(object sender, EventArgs e)

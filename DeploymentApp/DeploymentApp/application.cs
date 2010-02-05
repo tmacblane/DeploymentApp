@@ -21,6 +21,7 @@ namespace DeploymentApp
         private string stagingPathText;
 
         private string comboBoxValue;
+        private string releaseNotesText;
         #endregion
 
         #region set values
@@ -58,6 +59,12 @@ namespace DeploymentApp
         {
             get { return comboBoxValue; }
             set { comboBoxValue = value; }
+        }
+
+        public string ReleaseNotesText
+        {
+            get { return releaseNotesText; }
+            set { releaseNotesText = value; }
         }
         #endregion
     }

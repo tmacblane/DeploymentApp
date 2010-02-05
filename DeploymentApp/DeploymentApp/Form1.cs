@@ -54,6 +54,7 @@ namespace DeploymentApp
             }
         }
 
+        #region validation
         private bool validateApplicationComboBox()
         {
             bool applicationSelected = true;
@@ -79,143 +80,50 @@ namespace DeploymentApp
             errorProvider2.Clear();
             return releaseNotes;
         }
+        #endregion
 
         private void submit_button_Click(object sender, EventArgs e)
         {
+            createReadMeFile createReadMeDocument = new createReadMeFile();
+            fileCopy copyBuildFiles = new fileCopy();
+            sendEmail email = new sendEmail();
+
             bool validApplicationSelected = validateApplicationComboBox();
             bool validReleaseNotes = validateReleaseNotesTextbox();
 
             if (validApplicationSelected && validReleaseNotes)
-            {
+            {                
+                application appClass = new application();
+                appClass.ComboBoxValue = applicationComboBox.Text;
+                appClass.ReleaseNotesText = releaseNotesTextbox.Text;
                 try
                 {
-                    createReadMe();
-
-                    fileMove();
+                    createReadMeDocument.createReadMe(appClass);
+                    copyBuildFiles.copyFiles(appClass);
                 }
-
                 catch(Exception stuff)
                 {
                     MessageBox.Show(stuff.ToString());
                     //MessageBox.Show("The selected application files could not be found");
                 }
+
+                try
+                {
+                    email.sendEmailNotification(appClass);
+                }
+
+                catch
+                {
+                    MessageBox.Show("Configure the email information");
+                }
+                    releaseNotesTextbox.Clear();
+                    applicationComboBox.ResetText();
             }
         }
 
         private void cancel_button_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void fileMove()
-        {
-            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
-
-            //Pulls the list of applications in the xml
-            XmlNode node = null;
-            XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
-            
-            //Sets the base path for the node to what is selected in the combobox
-            string selectedApplication = applicationComboBox.SelectedItem.ToString();
-            foreach (XmlNode application in applicationList)
-            {
-                if (application.Attributes["name"].Value == selectedApplication)
-                {
-                    node = application;
-                }
-            }            
-
-            //Get the build and staging path
-            XmlNode buildPath = node.SelectSingleNode("build_path");
-            XmlNode stagingPath = node.SelectSingleNode("staging_path");
-
-            //Sets the source and destination path to a string variable
-            string source = buildPath.InnerText;
-            string destination = stagingPath.InnerText;
-            
-            //Gets the executable file and moves it
-            XmlNode executableFile = node.SelectSingleNode("executable");
-            FileInfo file = new FileInfo(executableFile.InnerText);
-
-            string sourceFile = Path.Combine(source, file.Name);
-            string destFile = Path.Combine(destination, file.Name);
-
-            File.Copy(sourceFile, destFile, true);
-
-            //Gets the dependency files and moves them
-            XmlNodeList dependencyNodes = node.SelectNodes("dependencies/dependency");
-
-            foreach (XmlNode dependencyNode in dependencyNodes)
-            {
-                var fileName = dependencyNode.InnerText;
-                string sourcePath = Path.Combine(source, fileName);
-                string destPath = Path.Combine(destination, fileName);
-                
-                File.Copy(sourcePath, destPath, true);
-
-            }
-
-            applicationComboBox.ResetText();
-        }
-        
-        private void createReadMe()
-        {
-            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
-
-            //Pulls the list of applications in the xml
-            XmlNode node = null;
-            XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
-
-            //Sets the base path for the node to what is selected in the combobox
-            string selectedApplication = applicationComboBox.SelectedItem.ToString();
-            foreach (XmlNode application in applicationList)
-            {
-                if (application.Attributes["name"].Value == selectedApplication)
-                {
-                    node = application;                    
-                }
-            }      
-
-            XmlNode buildPath = node.SelectSingleNode("build_path");
-            string readMeFile = buildPath.InnerText + "\\ReadMe.txt";
-            string oldReadMeFile = buildPath.InnerText + "\\ReadMe_Old.txt";
-
-            if (File.Exists(readMeFile))
-            {
-                if (File.Exists(oldReadMeFile))
-                {
-                    using (StreamWriter swAppend = File.AppendText(oldReadMeFile))
-                    {
-                        swAppend.WriteLine(File.ReadAllText(readMeFile));
-                        swAppend.Close();
-                    }
-                }
-                else
-                {
-                    File.Copy(@readMeFile, @oldReadMeFile);
-
-                    using (StreamWriter sw = File.CreateText(readMeFile))
-                    {
-                        sw.WriteLine(releaseNotesTextbox.Text);
-                        sw.Close();
-                    }
-                }
-
-                using (StreamWriter swReplace = File.CreateText(readMeFile))
-                {
-                    swReplace.WriteLine(releaseNotesTextbox.Text);
-                    swReplace.Close();
-                }
-            }
-            else
-            {
-                using (StreamWriter sw = File.CreateText(readMeFile))
-                {
-                    sw.WriteLine(releaseNotesTextbox.Text);
-                    sw.Close();
-                }
-            }
-            releaseNotesTextbox.Clear();
         }
 
         private void addNewLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

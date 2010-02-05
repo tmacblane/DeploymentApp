@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.submit_button = new System.Windows.Forms.Button();
             this.applicationComboBox = new System.Windows.Forms.ComboBox();
-            this.releaseNotesTextbox = new System.Windows.Forms.TextBox();
             this.cancel_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,13 +38,14 @@
             this.addNewLabel = new System.Windows.Forms.LinkLabel();
             this.editLabel = new System.Windows.Forms.LinkLabel();
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.releaseNotesTextbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
             // submit_button
             // 
-            this.submit_button.Location = new System.Drawing.Point(255, 231);
+            this.submit_button.Location = new System.Drawing.Point(355, 231);
             this.submit_button.Name = "submit_button";
             this.submit_button.Size = new System.Drawing.Size(75, 23);
             this.submit_button.TabIndex = 2;
@@ -62,24 +62,14 @@
             ""});
             this.applicationComboBox.Location = new System.Drawing.Point(12, 28);
             this.applicationComboBox.Name = "applicationComboBox";
-            this.applicationComboBox.Size = new System.Drawing.Size(200, 21);
+            this.applicationComboBox.Size = new System.Drawing.Size(245, 21);
             this.applicationComboBox.Sorted = true;
             this.applicationComboBox.TabIndex = 0;
             this.applicationComboBox.TextChanged += new System.EventHandler(this.applicationComboBox_TextChanged);
             // 
-            // releaseNotesTextbox
-            // 
-            this.errorProvider2.SetIconAlignment(this.releaseNotesTextbox, System.Windows.Forms.ErrorIconAlignment.TopRight);
-            this.releaseNotesTextbox.Location = new System.Drawing.Point(12, 75);
-            this.releaseNotesTextbox.Multiline = true;
-            this.releaseNotesTextbox.Name = "releaseNotesTextbox";
-            this.releaseNotesTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.releaseNotesTextbox.Size = new System.Drawing.Size(318, 150);
-            this.releaseNotesTextbox.TabIndex = 1;
-            // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(174, 231);
+            this.cancel_button.Location = new System.Drawing.Point(274, 231);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 3;
@@ -112,7 +102,7 @@
             // addNewLabel
             // 
             this.addNewLabel.AutoSize = true;
-            this.addNewLabel.Location = new System.Drawing.Point(279, 31);
+            this.addNewLabel.Location = new System.Drawing.Point(310, 31);
             this.addNewLabel.Name = "addNewLabel";
             this.addNewLabel.Size = new System.Drawing.Size(51, 13);
             this.addNewLabel.TabIndex = 7;
@@ -123,7 +113,7 @@
             // editLabel
             // 
             this.editLabel.AutoSize = true;
-            this.editLabel.Location = new System.Drawing.Point(248, 31);
+            this.editLabel.Location = new System.Drawing.Point(279, 31);
             this.editLabel.Name = "editLabel";
             this.editLabel.Size = new System.Drawing.Size(25, 13);
             this.editLabel.TabIndex = 8;
@@ -135,21 +125,30 @@
             // 
             this.errorProvider2.ContainerControl = this;
             // 
+            // releaseNotesTextbox
+            // 
+            this.releaseNotesTextbox.Location = new System.Drawing.Point(12, 75);
+            this.releaseNotesTextbox.Multiline = true;
+            this.releaseNotesTextbox.Name = "releaseNotesTextbox";
+            this.releaseNotesTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.releaseNotesTextbox.Size = new System.Drawing.Size(418, 149);
+            this.releaseNotesTextbox.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 266);
+            this.ClientSize = new System.Drawing.Size(442, 266);
+            this.Controls.Add(this.releaseNotesTextbox);
             this.Controls.Add(this.editLabel);
             this.Controls.Add(this.addNewLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancel_button);
-            this.Controls.Add(this.releaseNotesTextbox);
             this.Controls.Add(this.applicationComboBox);
             this.Controls.Add(this.submit_button);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(350, 300);
+            this.MaximumSize = new System.Drawing.Size(450, 300);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application Deployment";
@@ -165,7 +164,6 @@
 
         public System.Windows.Forms.Button submit_button;
         public System.Windows.Forms.ComboBox applicationComboBox;
-        public System.Windows.Forms.TextBox releaseNotesTextbox;
         public System.Windows.Forms.Button cancel_button;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;
@@ -173,6 +171,7 @@
         public System.Windows.Forms.LinkLabel editLabel;
         public System.Windows.Forms.LinkLabel addNewLabel;
         public System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.TextBox releaseNotesTextbox;
     }
 }
 

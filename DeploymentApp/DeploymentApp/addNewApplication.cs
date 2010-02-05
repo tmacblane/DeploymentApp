@@ -41,7 +41,7 @@ namespace DeploymentApp
             applicationNode.AppendChild(dependenciesNode);
 
             //Create a new dependency node
-            string[] dependencies = appClass.DependenciesText.Split(new char[] { ',' });
+            string[] dependencies = appClass.DependenciesText.Split(new char[] { '\n' });
 
             foreach (string dependency in dependencies)
             {

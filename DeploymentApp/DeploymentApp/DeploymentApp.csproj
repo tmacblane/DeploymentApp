@@ -82,7 +82,9 @@
       <DependentUpon>AddUpdateBaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="application.cs" />
+    <Compile Include="createReadMeFile.cs" />
     <Compile Include="deleteApplication.cs" />
+    <Compile Include="fileCopy.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,7 +116,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.config" />
-    <None Include="DeploymentApp_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,6 +125,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="sendEmail.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="updateApplication.cs" />
     <Compile Include="UpdateApplicationForm.cs">

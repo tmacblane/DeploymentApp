@@ -51,12 +51,12 @@ namespace DeploymentApp
             string updatedStagingPath = appClass.StagingPathText;
 
             //Create a new dependency node            
-            string[] dependencies = appClass.DependenciesText.Split(new char[] { ',' });
+            string[] dependencies = appClass.DependenciesText.Split(new char[] { '\n' });
 
             foreach (string dependency in dependencies)
             {
                 XmlElement dependencyNode = interfaces.CreateElement("dependency");
-                dependencyNode.InnerText = dependency.ToString();
+                dependencyNode.InnerText = dependency.Trim().ToString();
                 if (dependencyNode.InnerText.Trim() != "")
                 {
                     dependencyFiles.AppendChild(dependencyNode);
