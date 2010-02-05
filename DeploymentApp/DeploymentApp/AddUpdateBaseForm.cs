@@ -117,18 +117,16 @@ namespace DeploymentApp
             if (buildPathTextBox.Text != "")
             {
                 ofdg.InitialDirectory = buildPathTextBox.Text;
+                if (ofdg.ShowDialog() == DialogResult.OK)
+                {
+                    executableFileTextbox.Text = ofdg.FileName.Remove(0, buildPathTextBox.Text.Length + 1);
+                }
+                errorProvider2.Clear();
             }
             else
             {
-                ofdg.InitialDirectory = @"c:\";
+                errorProvider2.SetError(executableFileTextbox, "Select a buildPath first");
             }
-            if (ofdg.ShowDialog() == DialogResult.OK)
-            {
-                //executableFileTextbox.Text = ofdg.SafeFileName;
-                executableFileTextbox.Text = ofdg.FileName.Remove(0, buildPathTextBox.Text.Length + 1);
-                //executableFileTextbox.Text = executableFileTextbox.Text.Substring(0, buildPathTextBox.Text.Length);// Replace(buildPathTextBox.Text, '');
-            }
-            ofdg.Reset();
         }
 
         private void btnDependency_Click(object sender, EventArgs e)
@@ -136,22 +134,23 @@ namespace DeploymentApp
             ofdg.Title = "Select Dependencies";
             ofdg.Filter = "All Files (*.*)|*.*";
             ofdg.Multiselect = true;
+
             if (buildPathTextBox.Text != "")
             {
                 ofdg.InitialDirectory = buildPathTextBox.Text;
+                if (ofdg.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (string dependency in ofdg.FileNames)
+                    {
+                        dependenciesTextBox.Text = dependenciesTextBox.Text + dependency.Remove(0, buildPathTextBox.Text.Length + 1) + Environment.NewLine;
+                    }                    
+                }
+                errorProvider3.Clear();
             }
             else
             {
-                ofdg.InitialDirectory = @"c:\";
+                errorProvider3.SetError(dependenciesTextBox, "Select a buildPath first");
             }
-            if (ofdg.ShowDialog() == DialogResult.OK)
-            {
-                foreach (string dependency in ofdg.FileNames)
-                {
-                    dependenciesTextBox.Text = dependenciesTextBox.Text + dependency.Remove(0, buildPathTextBox.Text.Length + 1) + Environment.NewLine;
-                }
-            }
-            ofdg.Reset();
         }
 
         private void btnStagingPath_Click(object sender, EventArgs e)
