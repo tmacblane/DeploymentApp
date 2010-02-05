@@ -67,7 +67,6 @@ namespace DeploymentApp
 
             interfaces.Save(executablePath + "\\" + Settings.Default.XMLFile);
             interfaces = null;
-
         }        
     }
 }

@@ -82,6 +82,12 @@
       <DependentUpon>AddUpdateBaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="application.cs" />
+    <Compile Include="configureEmailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="configureEmailForm.Designer.cs">
+      <DependentUpon>configureEmailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="createReadMeFile.cs" />
     <Compile Include="deleteApplication.cs" />
     <Compile Include="fileCopy.cs" />
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddUpdateBaseForm.resx">
       <DependentUpon>AddUpdateBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="configureEmailForm.resx">
+      <DependentUpon>configureEmailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -134,6 +143,7 @@
     <Compile Include="UpdateApplicationForm.Designer.cs">
       <DependentUpon>UpdateApplicationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="updateConfigXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

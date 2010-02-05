@@ -16,15 +16,29 @@ namespace DeploymentApp
 {
     public class sendEmail
     {
+        string executablePath = Application.StartupPath;
+
         public void sendEmailNotification(application appClass)
         {
-            SmtpClient client = new SmtpClient();
-            client.Host = "192.168.4.11";
-            client.Port = 25;
-            client.EnableSsl = false;
-            client.Credentials = new NetworkCredential("username", "password");
+            XmlDocument interfaces = new XmlDocument();
+            interfaces.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+            XmlNodeList applicationList = interfaces.SelectNodes("settings/email");
 
-            client.Send("sender", "recipient", appClass.ComboBoxValue + " Release", appClass.ReleaseNotesText);
+            //Locate elements from the XML
+            XmlNode hostInformation = interfaces.SelectSingleNode("host");
+            XmlNode portInformation = interfaces.SelectSingleNode("port");
+            XmlNode usernameInformation = interfaces.SelectSingleNode("username");
+            XmlNode passwordInformation = interfaces.SelectSingleNode("password");
+            XmlNode senderInformation = interfaces.SelectSingleNode("sender");
+            XmlNode recipientInformation = interfaces.SelectSingleNode("recipient");
+
+            SmtpClient client = new SmtpClient();
+            client.Host = hostInformation.InnerText;
+            client.Port = Convert.ToInt32(portInformation.InnerText);
+            client.EnableSsl = false;
+            client.Credentials = new NetworkCredential(usernameInformation.InnerText, passwordInformation.InnerText);
+
+            client.Send(senderInformation.InnerText, recipientInformation.InnerText, appClass.ComboBoxValue + " Release", appClass.ReleaseNotesText);
         }
     }
 }

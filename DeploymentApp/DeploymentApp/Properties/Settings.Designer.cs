@@ -31,5 +31,14 @@ namespace DeploymentApp.Properties {
                 return ((string)(this["XMLFile"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("config.xml")]
+        public string ConfigXMLFile {
+            get {
+                return ((string)(this["ConfigXMLFile"]));
+            }
+        }
     }
 }

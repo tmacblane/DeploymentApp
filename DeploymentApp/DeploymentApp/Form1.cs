@@ -24,6 +24,7 @@ namespace DeploymentApp
 
         public void Form1_Load(object sender, EventArgs e)
         {
+            #region Load interfaces xml
             try
             {
                 interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
@@ -38,6 +39,27 @@ namespace DeploymentApp
                 xmlWriter.Close();
                 interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             }
+            #endregion
+
+            #region Load configuration xml
+            try
+            {
+                interfaces.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+            }
+
+            catch (System.IO.FileNotFoundException)
+            {
+                XmlTextWriter xmlWriter = new XmlTextWriter(Settings.Default.ConfigXMLFile, System.Text.Encoding.UTF8);
+                xmlWriter.Formatting = Formatting.Indented;
+                xmlWriter.WriteProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
+                xmlWriter.WriteStartElement("settings");
+                xmlWriter.Close();
+                interfaces.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+
+                configureEmailForm configureEmail = new configureEmailForm();
+                configureEmail.ShowDialog();
+            }
+            #endregion
 
             loadComboBox();
             
@@ -96,28 +118,45 @@ namespace DeploymentApp
                 application appClass = new application();
                 appClass.ComboBoxValue = applicationComboBox.Text;
                 appClass.ReleaseNotesText = releaseNotesTextbox.Text;
+
+                #region Create ReadMe
                 try
                 {
                     createReadMeDocument.createReadMe(appClass);
                     copyBuildFiles.copyFiles(appClass);
                 }
-                catch(Exception stuff)
+                catch//(Exception stuff)
                 {
-                    MessageBox.Show(stuff.ToString());
-                    //MessageBox.Show("The selected application files could not be found");
+                    //MessageBox.Show(stuff.ToString());
+                    MessageBox.Show("The selected application files could not be found");
                 }
+                #endregion
 
-                try
+                #region Send Email Notification
+                XmlDocument emailConfig = new XmlDocument();
+                emailConfig.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+
+                //check if email has been configured
+                XmlNode hostNode = emailConfig.SelectSingleNode("host");                
+                
+                if (hostNode != null)
                 {
                     email.sendEmailNotification(appClass);
                 }
-
-                catch
+                else
                 {
-                    MessageBox.Show("Configure the email information");
+                    if (MessageBox.Show("The email information has not configured and a notification will not be sent.\n\nWould you like to configure it now?", "Configure Email Alert", MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        Close();
+                    }                    
+
+                    configureEmailForm configureEmail = new configureEmailForm();
+                    configureEmail.ShowDialog();
                 }
-                    releaseNotesTextbox.Clear();
-                    applicationComboBox.ResetText();
+                #endregion
+
+                releaseNotesTextbox.Clear();
+                applicationComboBox.ResetText();
             }
         }
 

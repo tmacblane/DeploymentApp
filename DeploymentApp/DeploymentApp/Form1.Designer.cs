@@ -132,7 +132,7 @@
             this.releaseNotesTextbox.Name = "releaseNotesTextbox";
             this.releaseNotesTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.releaseNotesTextbox.Size = new System.Drawing.Size(418, 149);
-            this.releaseNotesTextbox.TabIndex = 9;
+            this.releaseNotesTextbox.TabIndex = 1;
             // 
             // Form1
             // 

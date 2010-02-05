@@ -14,17 +14,28 @@ namespace DeploymentApp
     public class application
     {
         #region textbox values
+        //AddUpdateBaseForm values
         private string applicationNameText;
         private string executableNameText;
         private string dependenciesText;
         private string buildPathText;
         private string stagingPathText;
 
+        //Form1 values
         private string comboBoxValue;
         private string releaseNotesText;
+
+        //Email information
+        private string emailHost;
+        private string emailPort;
+        private string emailUsername;
+        private string emailPassword;
+        private string emailSender;
+        private string emailRecipient;
         #endregion
 
         #region set values
+        //AddUpdateBaseForm values
         public string ApplicationNameText
         {
             get { return applicationNameText; }
@@ -55,6 +66,7 @@ namespace DeploymentApp
             set { stagingPathText = value; }
         }
 
+        //Form1 values
         public string ComboBoxValue
         {
             get { return comboBoxValue; }
@@ -65,6 +77,43 @@ namespace DeploymentApp
         {
             get { return releaseNotesText; }
             set { releaseNotesText = value; }
+        }
+
+        //Email information
+        public string EmailHost
+        {
+            get { return emailHost; }
+            set { emailHost = value; }
+        }
+
+        public string EmailPort
+        {
+            get { return emailPort; }
+            set { emailPort = value; }
+        }
+
+        public string EmailUsername
+        {
+            get { return emailUsername; }
+            set { emailUsername = value; }
+        }
+
+        public string EmailPassword
+        {
+            get { return emailPassword; }
+            set { emailPassword = value; }
+        }
+
+        public string EmailSender
+        {
+            get { return emailSender; }
+            set { emailSender = value; }
+        }
+
+        public string EmailRecipient
+        {
+            get { return emailRecipient; }
+            set { emailRecipient = value; }
         }
         #endregion
     }
