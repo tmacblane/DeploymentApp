@@ -52,14 +52,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DeploymentApp.exe" size="29696">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DeploymentApp.exe" size="29184">
       <assemblyIdentity name="DeploymentApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>6zcvoLoZ2o2C/Q/1VMZCvEnBHT8=</dsig:DigestValue>
+        <dsig:DigestValue>hGPW24FsDP9WkjAiq956+LEfiik=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

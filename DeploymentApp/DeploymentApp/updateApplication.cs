@@ -14,10 +14,12 @@ namespace DeploymentApp
 {
     public class updateApplication
     {
+        string executablePath = Application.StartupPath;
+
         public void updateExistingApplication(application appClass)
         {
             XmlDocument interfaces = new XmlDocument();
-            interfaces.Load(Settings.Default.XMLFile);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             XmlNode node = null;
             XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
 
@@ -68,7 +70,7 @@ namespace DeploymentApp
             stagingPath.InnerText = updatedStagingPath;
 
             //Saves and updates the xml
-            interfaces.Save(Settings.Default.XMLFile);
+            interfaces.Save(executablePath + "\\" + Settings.Default.XMLFile);
         }
     }
 }

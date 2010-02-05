@@ -69,6 +69,7 @@
             // 
             // releaseNotesTextbox
             // 
+            this.errorProvider2.SetIconAlignment(this.releaseNotesTextbox, System.Windows.Forms.ErrorIconAlignment.TopRight);
             this.releaseNotesTextbox.Location = new System.Drawing.Point(12, 75);
             this.releaseNotesTextbox.Multiline = true;
             this.releaseNotesTextbox.Name = "releaseNotesTextbox";
@@ -147,6 +148,8 @@
             this.Controls.Add(this.releaseNotesTextbox);
             this.Controls.Add(this.applicationComboBox);
             this.Controls.Add(this.submit_button);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(350, 300);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application Deployment";

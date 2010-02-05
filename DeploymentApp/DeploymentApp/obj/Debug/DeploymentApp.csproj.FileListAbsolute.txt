@@ -40,3 +40,16 @@ C:\CBLPathDev\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.
 C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.exe.config
 C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.exe
 C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.pdb
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.exe.manifest
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.application
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.exe
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\bin\Debug\DeploymentApp.pdb
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.AddApplicationForm.resources
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.AddUpdateBaseForm.resources
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.Form1.resources
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.Properties.Resources.resources
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.UpdateApplicationForm.resources
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.csproj.GenerateResource.Cache
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.exe.manifest
+C:\Users\tmacblane\Documents\Development\DeploymentApp\DeploymentApp\DeploymentApp\obj\Debug\DeploymentApp.application

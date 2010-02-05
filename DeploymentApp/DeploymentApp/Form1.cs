@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeploymentApp.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,8 @@ namespace DeploymentApp
 {
     public partial class Form1 : Form
     {
+        string executablePath = Application.StartupPath;
         XmlDocument interfaces = new XmlDocument();
-
-        public string xmlFilePath = "Interfaces.xml";
 
         public Form1()
         {
@@ -26,17 +26,17 @@ namespace DeploymentApp
         {
             try
             {
-                interfaces.Load(xmlFilePath);
+                interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             }
 
             catch(System.IO.FileNotFoundException)
             {
-                XmlTextWriter xmlWriter = new XmlTextWriter(xmlFilePath, System.Text.Encoding.UTF8);
+                XmlTextWriter xmlWriter = new XmlTextWriter(Settings.Default.XMLFile, System.Text.Encoding.UTF8);
                 xmlWriter.Formatting = Formatting.Indented;
                 xmlWriter.WriteProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
                 xmlWriter.WriteStartElement("applications");
                 xmlWriter.Close();
-                interfaces.Load(xmlFilePath);
+                interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             }
 
             loadComboBox();
@@ -46,7 +46,7 @@ namespace DeploymentApp
 
         private void loadComboBox()
         {
-            interfaces.Load(xmlFilePath);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
             XmlNodeList applicationList = interfaces.SelectNodes("applications/application");
             foreach (XmlNode application in applicationList)
             {
@@ -94,9 +94,10 @@ namespace DeploymentApp
                     fileMove();
                 }
 
-                catch
+                catch(Exception stuff)
                 {
-                    MessageBox.Show("The selected application files could not be found");
+                    MessageBox.Show(stuff.ToString());
+                    //MessageBox.Show("The selected application files could not be found");
                 }
             }
         }
@@ -108,7 +109,7 @@ namespace DeploymentApp
 
         private void fileMove()
         {
-            interfaces.Load(xmlFilePath);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
 
             //Pulls the list of applications in the xml
             XmlNode node = null;
@@ -139,7 +140,7 @@ namespace DeploymentApp
             string sourceFile = Path.Combine(source, file.Name);
             string destFile = Path.Combine(destination, file.Name);
 
-            File.Move(sourceFile, destFile);
+            File.Copy(sourceFile, destFile, true);
 
             //Gets the dependency files and moves them
             XmlNodeList dependencyNodes = node.SelectNodes("dependencies/dependency");
@@ -149,14 +150,17 @@ namespace DeploymentApp
                 var fileName = dependencyNode.InnerText;
                 string sourcePath = Path.Combine(source, fileName);
                 string destPath = Path.Combine(destination, fileName);
+                
+                File.Copy(sourcePath, destPath, true);
 
-                File.Move(sourcePath, destPath);
             }
+
+            applicationComboBox.ResetText();
         }
         
         private void createReadMe()
         {
-            interfaces.Load(xmlFilePath);
+            interfaces.Load(executablePath + "\\" + Settings.Default.XMLFile);
 
             //Pulls the list of applications in the xml
             XmlNode node = null;
@@ -168,13 +172,13 @@ namespace DeploymentApp
             {
                 if (application.Attributes["name"].Value == selectedApplication)
                 {
-                    node = application;
+                    node = application;                    
                 }
             }      
 
-            XmlNode stagingPath = node.SelectSingleNode("staging_path");
-            string readMeFile = stagingPath + "ReadMe.txt";
-            string oldReadMeFile = stagingPath + "ReadMe_Old.txt";
+            XmlNode buildPath = node.SelectSingleNode("build_path");
+            string readMeFile = buildPath.InnerText + "\\ReadMe.txt";
+            string oldReadMeFile = buildPath.InnerText + "\\ReadMe_Old.txt";
 
             if (File.Exists(readMeFile))
             {
@@ -216,7 +220,7 @@ namespace DeploymentApp
 
         private void addNewLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form2 addNewApplicationForm = new Form2(this);
+            AddApplicationForm addNewApplicationForm = new AddApplicationForm(this);
 
             applicationComboBox.Items.Clear();
             addNewApplicationForm.FormClosed += (x, y) =>
@@ -229,7 +233,7 @@ namespace DeploymentApp
 
         private void editLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {    
-            Form3 editApplicationForm = new Form3(this);
+            UpdateApplicationForm editApplicationForm = new UpdateApplicationForm(this);
             applicationComboBox.Items.Clear();
             try
             {
@@ -248,7 +252,7 @@ namespace DeploymentApp
 
                 editApplicationForm.ShowDialog();
             }
-            catch
+            catch(Exception)
             {
                 MessageBox.Show("The selected application was not found");
             }  
