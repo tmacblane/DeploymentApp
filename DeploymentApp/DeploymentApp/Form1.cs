@@ -137,21 +137,28 @@ namespace DeploymentApp
                 emailConfig.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
 
                 //check if email has been configured
-                XmlNode hostNode = emailConfig.SelectSingleNode("settings/email/host");                
-                
-                if (hostNode != null)
+                XmlNode hostNode = emailConfig.SelectSingleNode("settings/email/host");
+                try
                 {
-                    email.sendEmailNotification(appClass);
-                }
-                else
-                {
-                    if (MessageBox.Show("The email information has not configured and a notification will not be sent.\n\nWould you like to configure it now?", "Configure Email Alert", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (hostNode != null)
                     {
-                        configureEmailForm configureEmail = new configureEmailForm();
-                        configureEmail.ShowDialog();
-
                         email.sendEmailNotification(appClass);
-                    }               
+                    }
+                    else
+                    {
+                        if (MessageBox.Show("The email information has not configured and a notification will not be sent.\n\nWould you like to configure it now?", "Configure Email Alert", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            configureEmailForm configureEmail = new configureEmailForm();
+                            configureEmail.ShowDialog();
+
+                            email.sendEmailNotification(appClass);
+                        }
+                    }
+                }
+
+                catch
+                {
+                    MessageBox.Show("The email information was not configured correctly");
                 }
                 #endregion
 

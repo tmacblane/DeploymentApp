@@ -38,6 +38,7 @@ namespace DeploymentApp
                 errorProvider2.SetError(portTextbox, "Enter port information");
                 portInformation = false;
             }
+
             else
                 errorProvider2.Clear();
             return portInformation;
