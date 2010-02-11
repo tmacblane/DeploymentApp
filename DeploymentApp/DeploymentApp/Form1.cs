@@ -209,6 +209,8 @@ namespace DeploymentApp
             catch(Exception)
             {
                 MessageBox.Show("The selected application was not found");
+                applicationComboBox.Text = "";
+                loadComboBox();
             }  
         }
 

@@ -57,7 +57,6 @@
             // 
             this.applicationComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.applicationComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.applicationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.applicationComboBox.FormattingEnabled = true;
             this.applicationComboBox.Items.AddRange(new object[] {
             ""});

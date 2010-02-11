@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace DeploymentApp
@@ -35,12 +36,23 @@ namespace DeploymentApp
             bool portInformation = true;
             if (portTextbox.Text.Trim() == "")
             {
-                errorProvider2.SetError(portTextbox, "Enter port information");
-                portInformation = false;
+                errorProvider2.SetError(portTextbox, "Enter a port number");
+                portInformation = false;                                            
             }
-
             else
-                errorProvider2.Clear();
+            {                
+                try
+                {
+                    int i = int.Parse(portTextbox.Text);
+                    portInformation = true;
+                    errorProvider2.Clear();                    
+                }
+                catch
+                {
+                    errorProvider2.SetError(portTextbox, "Port must be a number");
+                    portInformation = false;
+                }
+            }
             return portInformation;
         }
 
@@ -79,7 +91,24 @@ namespace DeploymentApp
                 senderInformation = false;
             }
             else
-                errorProvider5.Clear();
+            {
+                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" + 
+                    @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" + 
+                    @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+
+                Regex re = new Regex(strRegex);
+
+                if (re.IsMatch(senderTextbox.Text))
+                {              
+                    senderInformation = true;
+                    errorProvider5.Clear();
+                }
+                else
+                {
+                    errorProvider5.SetError(senderTextbox, "Email address must be in a valid format");
+                    senderInformation = false;
+                }
+            }
             return senderInformation;
         }
 
@@ -92,7 +121,24 @@ namespace DeploymentApp
                 recipientInformation = false;
             }
             else
-                errorProvider6.Clear();
+            {
+                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                    @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                    @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+
+                Regex re = new Regex(strRegex);
+
+                if (re.IsMatch(recipientTextbox.Text))
+                {
+                    recipientInformation = true;
+                    errorProvider6.Clear();
+                }
+                else
+                {
+                    errorProvider6.SetError(recipientTextbox, "Email address must be in a valid format");
+                    recipientInformation = false;
+                }
+            }
             return recipientInformation;
         }
         #endregion
