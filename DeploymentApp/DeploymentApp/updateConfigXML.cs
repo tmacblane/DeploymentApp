@@ -12,11 +12,58 @@ using System.Xml;
 
 namespace DeploymentApp
 {
-    public class updateConfigXML
+    public class UpdateConfigXML
     {
         string executablePath = Application.StartupPath;
 
         public void configureEmailSettings(application appClass)
+        {
+            XmlDocument emailConfig = new XmlDocument();
+            emailConfig.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+            
+            XmlNode hostNode = emailConfig.SelectSingleNode("settings/email/host");
+
+            //check if email has been configured
+            if (hostNode != null)
+            {
+                updateEmailSettings(appClass);
+            }
+            //configure email settings
+            else
+            {
+                setupEmailSettings(appClass);
+            }
+        }
+
+        public void updateEmailSettings(application appClass)
+        {
+            XmlDocument emailConfig = new XmlDocument();
+            emailConfig.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+
+            //Set the base path
+            XmlNode node = emailConfig.SelectSingleNode("settings/email");
+
+            //Get XML Nodes
+            XmlNode hostNode = node.SelectSingleNode("host");
+            XmlNode portNode = node.SelectSingleNode("port");
+            XmlNode usernameNode = node.SelectSingleNode("username");
+            XmlNode passwordNode = node.SelectSingleNode("password");
+            XmlNode senderNode = node.SelectSingleNode("sender");
+            XmlNode recipientNode = node.SelectSingleNode("recipient");
+
+            //Update the XML with the new values
+            hostNode.InnerText = appClass.EmailHost;
+            portNode.InnerText = appClass.EmailPort;
+            usernameNode.InnerText = appClass.EmailUsername;
+            passwordNode.InnerText = appClass.EmailPassword;
+            senderNode.InnerText = appClass.EmailSender;
+            recipientNode.InnerText = appClass.EmailRecipient;
+
+            //Update and save the changes
+            emailConfig.Save(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+        }
+
+        public void setupEmailSettings(application appClass)
         {
             XmlDocument emailConfig = new XmlDocument();
             emailConfig.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);

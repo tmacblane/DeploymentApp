@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace DeploymentApp
 {
-    public class fileCopy
+    public class FileCopy
     {
         string executablePath = Application.StartupPath;
         XmlDocument interfaces = new XmlDocument();

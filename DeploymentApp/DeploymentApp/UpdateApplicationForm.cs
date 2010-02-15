@@ -79,7 +79,7 @@ namespace DeploymentApp
                 appClass.StagingPathText = stagingPathTextBox.Text;
                 appClass.ComboBoxValue = comboBoxValue;
 
-                updateApplication updateApp = new updateApplication();
+                UpdateApplication updateApp = new UpdateApplication();
                 updateApp.updateExistingApplication(appClass);
 
                 Close();
@@ -92,13 +92,11 @@ namespace DeploymentApp
 
             if (MessageBox.Show("Are you sure you want to delete this application?", "Delete Application", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                deleteApplication deleteApp = new deleteApplication();
+                DeleteApplication deleteApp = new DeleteApplication();
                 deleteApp.deleteExistingApplication(appClass);
 
                 Close();
             }
-        }
-
-        
+        }        
     }
 }

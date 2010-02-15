@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace DeploymentApp
 {
-    public class createReadMeFile
+    public class CreateReadMeFile
     {
         string executablePath = Application.StartupPath;
         XmlDocument interfaces = new XmlDocument();

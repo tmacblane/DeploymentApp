@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace DeploymentApp
 {
-    public class updateApplication
+    public class UpdateApplication
     {
         string executablePath = Application.StartupPath;
 

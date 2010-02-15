@@ -14,7 +14,7 @@ using System.Xml;
 
 namespace DeploymentApp
 {
-    public class sendEmail
+    public class SendEmail
     {
         string executablePath = Application.StartupPath;
 

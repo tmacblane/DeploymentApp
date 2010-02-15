@@ -56,7 +56,7 @@ namespace DeploymentApp
                 xmlWriter.Close();
                 interfaces.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
 
-                configureEmailForm configureEmail = new configureEmailForm();
+                ConfigureEmailForm configureEmail = new ConfigureEmailForm();
                 configureEmail.ShowDialog();
             }
             #endregion
@@ -106,9 +106,9 @@ namespace DeploymentApp
 
         private void submit_button_Click(object sender, EventArgs e)
         {
-            createReadMeFile createReadMeDocument = new createReadMeFile();
-            fileCopy copyBuildFiles = new fileCopy();
-            sendEmail email = new sendEmail();
+            CreateReadMeFile createReadMeDocument = new CreateReadMeFile();
+            FileCopy copyBuildFiles = new FileCopy();
+            SendEmail email = new SendEmail();
 
             bool validApplicationSelected = validateApplicationComboBox();
             bool validReleaseNotes = validateReleaseNotesTextbox();
@@ -148,7 +148,7 @@ namespace DeploymentApp
                     {
                         if (MessageBox.Show("The email information has not configured and a notification will not be sent.\n\nWould you like to configure it now?", "Configure Email Alert", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            configureEmailForm configureEmail = new configureEmailForm();
+                            ConfigureEmailForm configureEmail = new ConfigureEmailForm();
                             configureEmail.ShowDialog();
 
                             email.sendEmailNotification(appClass);
@@ -226,6 +226,13 @@ namespace DeploymentApp
             {
                 editLabel.Hide();
             }
+        }
+
+        private void editEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConfigureEmailForm configureEmail = new ConfigureEmailForm();
+            configureEmail.loadEmailSettings();
+            configureEmail.ShowDialog();
         }
     }
 }

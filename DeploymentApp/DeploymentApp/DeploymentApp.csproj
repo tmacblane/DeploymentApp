@@ -73,7 +73,7 @@
     <Compile Include="AddApplicationForm.Designer.cs">
       <DependentUpon>AddApplicationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="addNewApplication.cs">
+    <Compile Include="AddNewApplication.cs">
     </Compile>
     <Compile Include="AddUpdateBaseForm.cs">
       <SubType>Form</SubType>
@@ -82,15 +82,15 @@
       <DependentUpon>AddUpdateBaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="application.cs" />
-    <Compile Include="configureEmailForm.cs">
+    <Compile Include="ConfigureEmailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="configureEmailForm.Designer.cs">
-      <DependentUpon>configureEmailForm.cs</DependentUpon>
+    <Compile Include="ConfigureEmailForm.Designer.cs">
+      <DependentUpon>ConfigureEmailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="createReadMeFile.cs" />
-    <Compile Include="deleteApplication.cs" />
-    <Compile Include="fileCopy.cs" />
+    <Compile Include="CreateReadMeFile.cs" />
+    <Compile Include="DeleteApplication.cs" />
+    <Compile Include="FileCopy.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,8 +105,8 @@
     <EmbeddedResource Include="AddUpdateBaseForm.resx">
       <DependentUpon>AddUpdateBaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="configureEmailForm.resx">
-      <DependentUpon>configureEmailForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConfigureEmailForm.resx">
+      <DependentUpon>ConfigureEmailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -134,16 +134,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="sendEmail.cs" />
+    <Compile Include="SendEmail.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="updateApplication.cs" />
+    <Compile Include="UpdateApplication.cs" />
     <Compile Include="UpdateApplicationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UpdateApplicationForm.Designer.cs">
       <DependentUpon>UpdateApplicationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="updateConfigXML.cs" />
+    <Compile Include="UpdateConfigXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

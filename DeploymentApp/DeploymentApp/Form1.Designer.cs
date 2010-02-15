@@ -39,6 +39,7 @@
             this.editLabel = new System.Windows.Forms.LinkLabel();
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.releaseNotesTextbox = new System.Windows.Forms.TextBox();
+            this.editEmail = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
@@ -134,11 +135,23 @@
             this.releaseNotesTextbox.Size = new System.Drawing.Size(418, 149);
             this.releaseNotesTextbox.TabIndex = 1;
             // 
+            // editEmail
+            // 
+            this.editEmail.AutoSize = true;
+            this.editEmail.Location = new System.Drawing.Point(12, 236);
+            this.editEmail.Name = "editEmail";
+            this.editEmail.Size = new System.Drawing.Size(80, 13);
+            this.editEmail.TabIndex = 9;
+            this.editEmail.TabStop = true;
+            this.editEmail.Text = "Configure Email";
+            this.editEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.editEmail_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 266);
+            this.Controls.Add(this.editEmail);
             this.Controls.Add(this.releaseNotesTextbox);
             this.Controls.Add(this.editLabel);
             this.Controls.Add(this.addNewLabel);
@@ -172,6 +185,7 @@
         public System.Windows.Forms.LinkLabel addNewLabel;
         public System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.TextBox releaseNotesTextbox;
+        private System.Windows.Forms.LinkLabel editEmail;
     }
 }
 

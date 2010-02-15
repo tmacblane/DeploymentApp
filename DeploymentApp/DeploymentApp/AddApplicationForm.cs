@@ -64,7 +64,7 @@ namespace DeploymentApp
                 appClass.BuildPathText = buildPathTextBox.Text;
                 appClass.StagingPathText = stagingPathTextBox.Text;
 
-                addNewApplication addNew = new addNewApplication();
+                AddNewApplication addNew = new AddNewApplication();
                 addNew.createNewApplication(appClass);
 
                 Close();

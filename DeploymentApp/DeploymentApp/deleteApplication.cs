@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace DeploymentApp
 {
-    public class deleteApplication
+    public class DeleteApplication
     {
         string executablePath = Application.StartupPath;
 

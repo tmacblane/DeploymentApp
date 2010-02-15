@@ -1,20 +1,55 @@
-﻿using System;
+﻿using DeploymentApp.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DeploymentApp
 {
-    public partial class configureEmailForm : Form
+    public partial class ConfigureEmailForm : Form
     {
-        public configureEmailForm()
+        string executablePath = Application.StartupPath;
+
+        public ConfigureEmailForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+        public void loadEmailSettings()
+        {
+            XmlDocument emailConfig = new XmlDocument();
+            emailConfig.Load(executablePath + "\\" + Settings.Default.ConfigXMLFile);
+
+            //Set the base path
+            XmlNode node = emailConfig.SelectSingleNode("settings/email");
+            XmlNode emailHostNode = emailConfig.SelectSingleNode("settings/email/host");
+
+            //check if email has been configured
+            if (emailHostNode != null)
+            {
+                //Get XML Nodes
+                XmlNode hostNode = node.SelectSingleNode("host");
+                XmlNode portNode = node.SelectSingleNode("port");
+                XmlNode usernameNode = node.SelectSingleNode("username");
+                XmlNode passwordNode = node.SelectSingleNode("password");
+                XmlNode senderNode = node.SelectSingleNode("sender");
+                XmlNode recipientNode = node.SelectSingleNode("recipient");
+
+                //Update the XML with the new values
+                smtpHostTextbox.Text = hostNode.InnerText;
+                portTextbox.Text = portNode.InnerText;
+                usernameTextbox.Text = usernameNode.InnerText;
+                passwordTextbox.Text = passwordNode.InnerText;
+                senderTextbox.Text = senderNode.InnerText;
+                recipientTextbox.Text = recipientNode.InnerText;
+            }
         }
 
         #region Validate Textboxes
@@ -162,7 +197,7 @@ namespace DeploymentApp
                 appClass.EmailSender = senderTextbox.Text;
                 appClass.EmailRecipient = recipientTextbox.Text;
 
-                updateConfigXML configureEmailInfo = new updateConfigXML();
+                UpdateConfigXML configureEmailInfo = new UpdateConfigXML();
                 configureEmailInfo.configureEmailSettings(appClass);
 
                 Close();
@@ -171,7 +206,7 @@ namespace DeploymentApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you wish to cancel.  You will not be able to send emails when deploying applications.", "Cancel Email Configuration", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you wish to cancel.", "Cancel Email Configuration", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Close();
             }
